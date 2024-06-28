@@ -7,18 +7,24 @@ import org.junit.Test;
 
 
 public class Main extends BaseTest {
-    static LoginPage loginPage = new LoginPage();
-    static MainPage mainPage = new MainPage();
+
+    private final String BaseUrl = "https://devsmart.customs.gov.kg/auth/login";
+    private final String username = "admin";
+    private final String password = "Admin2309";
 
     @Test
-    public void authenticate() {
-      loginPage.auth(username, password);
+    public void authenticate() throws InterruptedException{
+        LoginPage loginPage = new LoginPage(BaseUrl);
+        loginPage.login(username,password);
+        Thread.sleep(5000);
     }
 
     @Test
     public void photoFixation() throws InterruptedException {
-        loginPage.auth(username, password);
-        mainPage.photoFixation();
-        Thread.sleep(5000);
+    authenticate();
+    MainPage mainPage = new MainPage();
+    mainPage.navigateToCard();
+Thread.sleep(3000);
+
     }
 }

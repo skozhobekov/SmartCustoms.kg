@@ -1,31 +1,28 @@
 package Main.Pages;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.Keys;
 
-import Main.Ancestors.BasePage;
-import Main.Main;
-import com.microsoft.playwright.Locator;
+import javax.swing.text.Element;
 
-import java.util.Locale;
+import static com.codeborne.selenide.Selenide.$$x;
+import static com.codeborne.selenide.Selenide.$x;
 
-public class MainPage extends BasePage {
-    Locator menuBar = page.locator("span[class='open-main-nav']");
-    Locator registrationBtn = page.locator("//span[contains(text(), 'Регистрация')]");
-    Locator registrCards = page.locator("//span[contains(text(), 'Карточки')]");
-    Locator addRegistrCard = page.locator("//button[@class='form-control custom-button-add']");
-    Locator openFixations = page.locator("//button[@data-bs-target='#photo-recording-modal']");
-    Locator addNew = page.locator("//button[contains(text(), 'Добавить новый')]");
-    Locator ATCnumber = page.locator("//input[@placeholder='Введите номер АТС']");
-    Locator country = page.locator("Страна");
+public class MainPage {
+    private final ElementsCollection buttons = $$x("//h2//a");
+    private final SelenideElement burger = $x("//span[@class='open-main-nav']");
+    private final SelenideElement registration = $x("//span[contains(text(), 'Регистрация')]");
+    private final SelenideElement registrationCards = $x("//span[contains(text(), 'Карточки')]");
+    private final SelenideElement searchCard = $x("//input[@placeholder='Транспорт номери боюнча издөө']");
+    private final ElementsCollection list = $$x("//div//div[@class = 'card-body']");
 
 
-    public MainPage photoFixation() {
-        menuBar.click();
-        registrationBtn.click();
-        registrCards.click();
-        addRegistrCard.click();
-        openFixations.click();
-        addNew.click();
-        ATCnumber.type("7747");
-        country.type("КЫРГЫЗСТАН");
-        return this;
+    public void navigateToCard()  {
+    burger.click();
+    registration.click();
+    registrationCards.click();
+    searchCard.sendKeys("TEST123");
+    list.first().click();
     }
 }

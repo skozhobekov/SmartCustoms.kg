@@ -1,30 +1,23 @@
 package Main.Pages;
 
-import Main.Ancestors.BasePage;
-import com.microsoft.playwright.*;
-import org.junit.experimental.theories.Theories;
-import org.testng.Assert;
-import org.testng.annotations.Test;
-import org.testng.asserts.Assertion;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
+import static com.codeborne.selenide.Selenide.$x;
 
 
-public class LoginPage extends BasePage {
-    Locator usernameField = page.locator("//input[@id='username']");
-     Locator passwordField = page.locator("//input[@id='password']");
-     Locator submit = page.locator("//button[@class='btn btn-primary w-100']");
+public class LoginPage {
+    private final SelenideElement loginField = $x("//input[@id='username']");
+    private final SelenideElement passwordField= $x("//input[@id='password']");
+    private final SelenideElement loginButton= $x("//button[@class='btn btn-primary w-100']");
 
-
-
-public LoginPage auth(String username, String password) {
-    usernameField.click();
-    usernameField.type(username);
-    passwordField.click();
-    passwordField.type(password);
-    submit.click();
-    String message = submit.textContent();
-    System.out.println("text of submit button is: " + message);
-    return this;
+    public LoginPage(String url) {
+        Selenide.open(url);
     }
 
+    public void login (String username, String password) {
+        loginField.sendKeys(username);
+        passwordField.sendKeys(password);
+        loginButton.click();
+    }
 
 }
