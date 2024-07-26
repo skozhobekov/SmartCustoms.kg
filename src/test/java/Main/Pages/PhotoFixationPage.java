@@ -12,7 +12,7 @@ public class PhotoFixationPage {
 
     private final SelenideElement scrollToObject = $x("//footer[@class='pt-4 pb-4']");
     private final SelenideElement lookPhoto = $x("//button[@data-bs-target='#photo-recording-modal']");
-    private final SelenideElement addNewPhoto = $x("//*[.='Добавить новый']");
+    private final SelenideElement addNewPhoto = $x("//*[.='Добавить']");
     private final SelenideElement ATSNumberField = $x("//input[@name= 'chassisId']");
     private final ElementsCollection countryPick =$$x("//*[.='Выберите страну из списка']");
     private final ElementsCollection typePick =$$x("//*[.='Выберите тип из списка']");
@@ -21,7 +21,8 @@ public class PhotoFixationPage {
     private final ElementsCollection datePick=$$x("//div[@class='input-icon-container']");
     private final ElementsCollection dayPick=$$x("//td[@class='available weekend ng-star-inserted']");
     private final ElementsCollection saveButton=$$x("//button[@type='submit']");
-    private final ElementsCollection uploadImageBtn=$$x("//input-file[@class='ng-tns-c238940620-1'][1]");
+    //private final ElementsCollection uploadImageBtn=$$x("//input-file[@class='ng-tns-c238940620-1'][1]");
+    private final SelenideElement uploadImageBtn=$x("//input[@id = 'vehiclePhoto0']");
     private SelenideElement testCountry = $x("//*[.='12313']");
     private SelenideElement testType = $x("//*[.='fadfa']");
     private SelenideElement carModel = $x("//*[.='Acura']");
@@ -45,7 +46,7 @@ public class PhotoFixationPage {
         cameraModel.click();
         datePick.get(0).click();
         dayPick.get(1).click();
-        //uploadImageBtn.get(0).uploadFile(new File("src/test/data/stinger.jpg"));
+        uploadImageBtn.uploadFile(new File("src/test/data/stinger.jpg"));
         //divid.click();
         saveButton.get(3).click();
     }
