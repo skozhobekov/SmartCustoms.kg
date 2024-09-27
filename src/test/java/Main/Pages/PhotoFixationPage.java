@@ -30,7 +30,6 @@ public class PhotoFixationPage {
     private SelenideElement divid = $x("//*[@id=\"photo-recording-modal\"]/div/div/div[2]/div[1]/form/div[2]/div/div[4]/input-file[1]");
 
 
-
     public void fullfiling() {
         scrollToObject.scrollIntoView(true);
         lookPhoto.click();
